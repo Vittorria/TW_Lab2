@@ -13,9 +13,9 @@
 ### Key generation
 
 * generate 2 distinct primes, their product in bits should be chosen key length
-* compute &phi; = Euler totient function or _Carmichael function_
-* choose e(public key), s.t. 1<e<&phi; and gcd(e,&phi;) = 1 (coprime numbers)
-* choose d(private key), s.t. d is multiplicative inverse of e mod &#966;
+* compute φ = Euler totient function or _Carmichael function_
+* choose e(public key), s.t. 1<e<φ and gcd(e,φ) = 1 (coprime numbers)
+* choose d(private key), s.t. d is multiplicative inverse of e mod φ;
 
 ### Encryption & Decryption
 
