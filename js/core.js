@@ -32,4 +32,26 @@ function power(x, n) {
     } 
 }
 
+function is_coprime(a, b) {
+    if (gcd(a,b) == 1) {
+        return true
+    }
+    else {
+        return false
+    }
+}
+
+function choose_pub_key(totient) {
+    //TODO add acceptable lower limit
+    while(true) {
+        pub = Math.floor((Math.random() * (totient - 1))+1)
+        if (is_coprime(pub, totient)) {
+            return pub
+        }
+    }
+}
+
+function encrypt(block, key, modulus) {
+    return power(block, key) % modulus
+}
 
