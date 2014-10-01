@@ -25,9 +25,10 @@
 ### Functions(effort):
 
 * generate primes [7]
-* gcd [5]
-* totient [1]
+* DONE gcd [5]
+* DONE totient [1]
 * coprime number [5]
 * choose e [3]
 * multiplicative inverse [6]
-* x^y(mod n) with exponentiation by squaring [5]
+* x^y(mod n) [4] 
+* DONE exponentiation by squaring [3]
