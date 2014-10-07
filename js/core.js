@@ -15,7 +15,30 @@ function gcd(a, b) {
     }
     return a
 }
+// Extended greatest common divisor
+function egcd(a, b) {
+    if (a == 0) {
+        return [b, 0 ,1]
+    }
+    else {
+        list = egcd(b % a, a)
+        g = list[0]
+        y = list[1]
+        x = list[2]
+        return [g, x - Math.floor(b/a) * y, y]
+    }
+}
 
+//Modular multiplicative inverse
+function mod_inv(a, m) {
+    list = egcd(a, m)
+    if (list[0] != 1) {
+        return null // modular inverse doesn't exist
+    }
+    else {
+        return list[1] % m
+    }
+}
 //Exponentiation by squaring
 function power(x, n) {
     if (n == 0) {
@@ -51,7 +74,22 @@ function choose_pub_key(totient) {
     }
 }
 
+function choose_private_key(totient, pub_key) {
+    //TODO handle the case with inexistent key, will have to regenerate pub_key
+    return mod_inv(pub_key, totient)
+}    
+
 function encrypt(block, key, modulus) {
     return power(block, key) % modulus
+}
+
+
+//TODO Miller-rabin primality test
+function is_prime(n, k) {
+    s = 0
+    
+    while(true) {
+        a = Math.floor(Math.random() * (n - 4)) + 2 //randint in range 2 ; n - 2
+    }
 }
 

@@ -29,6 +29,6 @@
 * DONE totient [1]
 * DONE coprime number [5]
 * DONE choose e [3]
-* multiplicative inverse [6]
+* DONE multiplicative inverse [6]
 * DONE x^y(mod n) [4] 
 * DONE exponentiation by squaring [3]
