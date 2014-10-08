@@ -79,17 +79,67 @@ function choose_private_key(totient, pub_key) {
     return mod_inv(pub_key, totient)
 }    
 
-function encrypt(block, key, modulus) {
+function pow_mod(block, key, modulus) {
     return power(block, key) % modulus
 }
 
+// 100 % primality
+// returns 0 if prime
+// prime factor if composite
 
-//TODO Miller-rabin primality test
-function is_prime(n, k) {
-    s = 0
-    
-    while(true) {
-        a = Math.floor(Math.random() * (n - 4)) + 2 //randint in range 2 ; n - 2
+function is_prime(n) {
+    if (n == 2) return 0
+    if (n % 2==0) return 2
+    var isprime = true
+    var max_prime = Math.floor(Math.sqrt(n) + 1) 
+
+    for (var i=3; i <= max_prime; i += 2) {
+        if(!(n % i))
+        {
+            isprime = false
+            break
+        }
     }
+    
+    if (isprime) return 0
+    else return i
 }
+//TODO Miller-rabin primality test
+function is_prob_prime(n, k) {
+    d = n - 1
+    s = 0
+    while(d % 2 == 0)
+    {
+        d /= 2
+        s += 1
+    }
+    while(k >= 0) {
+        a = Math.floor(Math.random() * (n - 4)) + 2 
+        x = pow_mod(a, d, n) //pow(a,s) % n
+        console.log('x: ' + x+ ' s '+s)
+        if(x != 1 && x != n-1) { 
+            i = 0
+            while(i<=s) {
+                x = pow_mod(x, 2, n)
+                if (x == 1) {
+                    console.log(x+' h')
+                    return false //is composite
+                }
+                else if (x == (n -1)){
+                    console.log('h  x:' + x)
+                    a = 0
+                    break
+                }
+                console.log('i '+i+' x '+x+' a '+a) 
+                i += 1
+            }
+            if (a!=0) { console.log('a:'+ a); return false}
+            k -= 1
+        }
+    }
+    return true
+}          
+        
 
+pr = 27
+console.log(is_prime(pr)) 
